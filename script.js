@@ -124,10 +124,12 @@ function useSuggestion(e) {
 	if (e.target.tagName === "LI") {
 		// Updates the input field value to the selected suggested result
 		input.value = e.target.innerText;
-		// Once selected, close the list of suggested results
-		suggestions.innerHTML = "";
-		suggestions.classList.remove("has-suggestions");
+	} else if (e.target.tagName === "STRONG") {
+		input.value = e.target.parentElement.innerText;
 	}
+	// Once selected, close the list of suggested results
+	suggestions.innerHTML = "";
+	suggestions.classList.remove("has-suggestions");
 }
 
 input.addEventListener("keyup", searchHandler);
