@@ -86,7 +86,7 @@ const fruit = [
 function search(str) {
 	// Return an array that only has fruits that contains the input value
 	return fruit.filter(function (fr) {
-		return fr.toLowerCase().indexOf(str.toLowerCase()) !== -1;
+		return fr.toLowerCase().includes(str.toLowerCase());
 	});
 }
 
@@ -107,13 +107,12 @@ function showSuggestions(results, inputVal) {
 	// create an li for each returned result
 	for (let i = 0; i < results.length; i++) {
 		let option = document.createElement("li");
-		// Use regex to locate the option's texts that matches the input value
-		let regex = new RegExp(inputVal, "i", "g");
+		// Use regex to locate the option's texts that matches the input value, g = global, i = case-insensitive
+		let regex = new RegExp(inputVal, "gi");
 		// Make the matching text bold in the list of suggested results
-		let strongText = results[i].match(regex);
 		option.innerHTML = results[i].replace(
 			regex,
-			`<strong>${strongText}</strong>`
+			(str) => `<strong>${str}</strong>`
 		);
 		suggestions.appendChild(option);
 	}
