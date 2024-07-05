@@ -100,6 +100,8 @@ function searchHandler(e) {
 		// adding the class help CSS add a transparent background the the result list ('ul')
 		suggestions.classList.add("has-suggestions");
 		showSuggestions(results, inputVal);
+	} else {
+		suggestions.classList.remove("has-suggestions");
 	}
 }
 
@@ -124,6 +126,7 @@ function useSuggestion(e) {
 		input.value = e.target.innerText;
 		// Once selected, close the list of suggested results
 		suggestions.innerHTML = "";
+		suggestions.classList.remove("has-suggestions");
 	}
 }
 
